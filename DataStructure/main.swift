@@ -28,3 +28,14 @@ let inResult = BinaryTree.traverseTreeByInorder(tree: tree)
 print(inResult)
 let postResult = BinaryTree.traverseTreeByPostorder(tree: tree)
 print(postResult)
+
+//插入排序
+var array:[Int] = [10,3,1,5,7,2,4,9,6,8]
+let insertSortResult = insertSort(arr: array, count: array.count)
+//print(insertSortResult)
+let shellSortResult = shellSort(arr: array, count: array.count)
+//print(shellSortResult)
+let selectSortResult = selectSort(arr: array, count: array.count)
+//print(selectSortResult)
+let binarySelectSortResult = binarySelectSort(arr: array, count: array.count)
+print(binarySelectSortResult)
