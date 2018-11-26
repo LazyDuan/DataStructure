@@ -30,7 +30,8 @@ let postResult = BinaryTree.traverseTreeByPostorder(tree: tree)
 print(postResult)
 
 //插入排序
-var array:[Int] = [10,3,1,5,7,2,4,9,6,8]
+var array:[Int] = [3,1,5,7,2,4,9,6,10,8]
+//var array:[Int] = [49,38,65,97,76,13,27]
 let insertSortResult = insertSort(arr: array, count: array.count)
 //print(insertSortResult)
 let shellSortResult = shellSort(arr: array, count: array.count)
@@ -38,4 +39,12 @@ let shellSortResult = shellSort(arr: array, count: array.count)
 let selectSortResult = selectSort(arr: array, count: array.count)
 //print(selectSortResult)
 let binarySelectSortResult = binarySelectSort(arr: array, count: array.count)
-print(binarySelectSortResult)
+//print(binarySelectSortResult)
+
+let heapSortResult = heapSort(arr: array, count: array.count)
+//print(heapSortResult)
+
+let bubbleSortResult = bubbleSort(arr: array, count: array.count)
+//print(bubbleSortResult)
+let quickSortResult = quickSort(arr: array, begin: 0, end: 9)
+print(quickSortResult)

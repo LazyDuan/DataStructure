@@ -119,22 +119,96 @@ func binarySelectSort(arr:Array<Int>,count:Int) -> Array<Int>{
 func heapSort(arr:Array<Int>,count:Int) -> Array<Int>{
     var array: [Int] = arr
     //初始化堆
+    for i in (0...(count-1)/2).reversed(){
+       array = heapAdjust(arr: array, s: i, length: count)
+    }
+    for j in (0...count-1).reversed(){
+        let temp = array[j]
+        array[j] = array[0]
+        array[0] = temp
+        array = heapAdjust(arr: array, s: 0, length: j)
+    }
     return array
+}
+func heapAdjust(arr:Array<Int>,s:Int,length:Int) -> Array<Int>{
+    var array: [Int] = arr
+    let temp = arr[s]
+    var root = s
+    var child = 2*root + 1
+    while child < length{
+        if child+1 < length && array[child] < array[child+1]{
+            child = child + 1
+        }
+        
+        if array[root] < array[child]{
+            array[root] = array [child]
+            root = child
+            child = 2*root + 1
+        
+        }else{
+            break;
+        }
+        array[root] = temp
+    }
+    return array;
 }
 
 //交换排序-冒泡排序
 func bubbleSort(arr:Array<Int>,count:Int) -> Array<Int>{
     var array: [Int] = arr
+    for i in 0..<count-1 {
+        for j in 0..<count-i-1{
+            if array[j] > array[j+1]{
+                let temp = array[j]
+                array[j] = array[j+1]
+                array[j+1] = temp
+            }
+            //print(array)
+            
+        }
+    }
     //初始化堆
     return array
 }
 
 //交换排序-快速排序
-func quickSort(arr:Array<Int>,count:Int) -> Array<Int>{
+func quickSort(arr:Array<Int>,begin:Int,end:Int) -> Array<Int>{
     var array: [Int] = arr
-    //初始化堆
+    var privotLow = 0
+    
+    if begin < end {
+        (array,privotLow) = partition(arr: array, begin: begin, end: end)
+        //print(array)
+        array = quickSort(arr: array, begin: begin, end: privotLow-1);
+        array = quickSort(arr: array, begin: privotLow+1, end: end);
+    }
     return array
 }
+
+func partition(arr:Array<Int>,begin:Int,end:Int) -> (Array<Int>,Int){
+    var array: [Int] = arr
+    let privotKey = array[begin]
+    var low = begin
+    var high = end
+    while low < high {
+        while low < high && array[high] >= privotKey{
+            high = high - 1
+        }
+        let temp = array[low]
+        array[low] = array[high]
+        array[high] = temp
+        while low < high && array[low] <= privotKey {
+            low = low + 1
+        }
+        let tmp = array[low]
+        array[low] = array[high]
+        array[high] = tmp
+    }
+        
+    return (array,low)
+    
+}
+
 
 //归并排序
 func mergeSort(arr:Array<Int>,count:Int) -> Array<Int>{
@@ -142,6 +216,8 @@ func mergeSort(arr:Array<Int>,count:Int) -> Array<Int>{
     //初始化堆
     return array
 }
+
+func merge(arr:Array<Int>,)
 
 //基数排序
 func radixSort(arr:Array<Int>,count:Int) -> Array<Int>{
